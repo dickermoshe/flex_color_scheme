@@ -336,6 +336,7 @@ class TextStyleSerializer with TextStyleSerializerMappable {
     this.debugLabel,
     this.fontFamily,
     this.overflow,
+    this.fontFamilyFallback,
   });
 
   final bool inherit;
@@ -386,12 +387,11 @@ class TextStyleSerializer with TextStyleSerializerMappable {
 
   final TextOverflow? overflow;
 
+  final List<String>? fontFamilyFallback;
+
   static TextStyleSerializer fromTextStyle(TextStyle textStyle) {
-    if (textStyle.fontFamilyFallback != null) {
-      throw UnimplementedError(
-          'FontFamilyFallback is not supported by TextStyleSerializer');
-    }
     return TextStyleSerializer(
+      fontFamilyFallback: textStyle.fontFamilyFallback,
       inherit: textStyle.inherit,
       color: textStyle.color,
       backgroundColor: textStyle.backgroundColor,
@@ -421,6 +421,7 @@ class TextStyleSerializer with TextStyleSerializerMappable {
 
   TextStyle toTextStyle() {
     return TextStyle(
+      fontFamilyFallback: fontFamilyFallback,
       inherit: inherit,
       color: color,
       backgroundColor: backgroundColor,

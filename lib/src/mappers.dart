@@ -335,6 +335,11 @@ const List<MapperBase<Object>> mappers = <MapperBase<Object>>[
   _EnumMapper<TargetPlatform>(TargetPlatform.values),
   _EnumMapper<SchemeColor>(SchemeColor.values),
   _EnumMapper<FlexInputBorderType>(FlexInputBorderType.values),
+  _EnumMapper<TabBarIndicatorSize>(TabBarIndicatorSize.values),
+  _EnumMapper<NavigationRailLabelType>(NavigationRailLabelType.values),
+  _EnumMapper<FlexInputBorderType>(FlexInputBorderType.values),
+  _EnumMapper<NavigationDestinationLabelBehavior>(
+      NavigationDestinationLabelBehavior.values),
   _TextStyleMapper(),
   _TypographyMapper(),
   _UnimplementedMapper<ColorFilter>(),

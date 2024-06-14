@@ -167,9 +167,11 @@ class FlexColorSchemeMapper extends ClassMapperBase<FlexColorScheme> {
   static bool _$useMaterial3(FlexColorScheme v) => v.useMaterial3;
   static const Field<FlexColorScheme, bool> _f$useMaterial3 =
       Field('useMaterial3', _$useMaterial3, opt: true, def: false);
-  static Iterable<ThemeExtension>? _$extensions(FlexColorScheme v) =>
+  static Iterable<ThemeExtension<ThemeExtension<dynamic>>>? _$extensions(
+          FlexColorScheme v) =>
       v.extensions;
-  static const Field<FlexColorScheme, Iterable<ThemeExtension>> _f$extensions =
+  static const Field<FlexColorScheme,
+          Iterable<ThemeExtension<ThemeExtension<dynamic>>>> _f$extensions =
       Field('extensions', _$extensions, opt: true);
 
   @override

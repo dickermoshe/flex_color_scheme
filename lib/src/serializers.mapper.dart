@@ -774,6 +774,10 @@ class TextStyleSerializerMapper extends ClassMapperBase<TextStyleSerializer> {
   static TextOverflow? _$overflow(TextStyleSerializer v) => v.overflow;
   static const Field<TextStyleSerializer, TextOverflow> _f$overflow =
       Field('overflow', _$overflow, opt: true);
+  static List<String>? _$fontFamilyFallback(TextStyleSerializer v) =>
+      v.fontFamilyFallback;
+  static const Field<TextStyleSerializer, List<String>> _f$fontFamilyFallback =
+      Field('fontFamilyFallback', _$fontFamilyFallback, opt: true);
 
   @override
   final MappableFields<TextStyleSerializer> fields = const {
@@ -801,6 +805,7 @@ class TextStyleSerializerMapper extends ClassMapperBase<TextStyleSerializer> {
     #debugLabel: _f$debugLabel,
     #fontFamily: _f$fontFamily,
     #overflow: _f$overflow,
+    #fontFamilyFallback: _f$fontFamilyFallback,
   };
 
   @override
@@ -840,7 +845,8 @@ class TextStyleSerializerMapper extends ClassMapperBase<TextStyleSerializer> {
         decorationThickness: data.dec(_f$decorationThickness),
         debugLabel: data.dec(_f$debugLabel),
         fontFamily: data.dec(_f$fontFamily),
-        overflow: data.dec(_f$overflow));
+        overflow: data.dec(_f$overflow),
+        fontFamilyFallback: data.dec(_f$fontFamilyFallback));
   }
 
   @override
@@ -903,6 +909,8 @@ abstract class TextStyleSerializerCopyWith<$R, $In extends TextStyleSerializer,
       get fontFeatures;
   ListCopyWith<$R, FontVariation,
       ObjectCopyWith<$R, FontVariation, FontVariation>>? get fontVariations;
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+      get fontFamilyFallback;
   $R call(
       {bool? inherit,
       Color? color,
@@ -927,7 +935,8 @@ abstract class TextStyleSerializerCopyWith<$R, $In extends TextStyleSerializer,
       double? decorationThickness,
       String? debugLabel,
       String? fontFamily,
-      TextOverflow? overflow});
+      TextOverflow? overflow,
+      List<String>? fontFamilyFallback});
   TextStyleSerializerCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -966,6 +975,14 @@ class _TextStyleSerializerCopyWithImpl<$R, $Out>
               (v) => call(fontVariations: v))
           : null;
   @override
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+      get fontFamilyFallback => $value.fontFamilyFallback != null
+          ? ListCopyWith(
+              $value.fontFamilyFallback!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(fontFamilyFallback: v))
+          : null;
+  @override
   $R call(
           {bool? inherit,
           Object? color = $none,
@@ -990,7 +1007,8 @@ class _TextStyleSerializerCopyWithImpl<$R, $Out>
           Object? decorationThickness = $none,
           Object? debugLabel = $none,
           Object? fontFamily = $none,
-          Object? overflow = $none}) =>
+          Object? overflow = $none,
+          Object? fontFamilyFallback = $none}) =>
       $apply(FieldCopyWithData({
         if (inherit != null) #inherit: inherit,
         if (color != $none) #color: color,
@@ -1017,7 +1035,8 @@ class _TextStyleSerializerCopyWithImpl<$R, $Out>
           #decorationThickness: decorationThickness,
         if (debugLabel != $none) #debugLabel: debugLabel,
         if (fontFamily != $none) #fontFamily: fontFamily,
-        if (overflow != $none) #overflow: overflow
+        if (overflow != $none) #overflow: overflow,
+        if (fontFamilyFallback != $none) #fontFamilyFallback: fontFamilyFallback
       }));
   @override
   TextStyleSerializer $make(CopyWithData data) => TextStyleSerializer(
@@ -1046,7 +1065,9 @@ class _TextStyleSerializerCopyWithImpl<$R, $Out>
           data.get(#decorationThickness, or: $value.decorationThickness),
       debugLabel: data.get(#debugLabel, or: $value.debugLabel),
       fontFamily: data.get(#fontFamily, or: $value.fontFamily),
-      overflow: data.get(#overflow, or: $value.overflow));
+      overflow: data.get(#overflow, or: $value.overflow),
+      fontFamilyFallback:
+          data.get(#fontFamilyFallback, or: $value.fontFamilyFallback));
 
   @override
   TextStyleSerializerCopyWith<$R2, TextStyleSerializer, $Out2>
