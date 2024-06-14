@@ -1307,7 +1307,7 @@ extension FlexThemeData on ThemeData {
     /// [ThemeExtension] subclasses to [ThemeData.new] or [copyWith].
     ///
     /// To obtain an extension, use ThemeData.of(context).extension.
-    final Iterable<ThemeExtension<dynamic>>? extensions,
+    final Iterable<ThemeExtension>? extensions,
   }) =>
       FlexColorScheme.light(
         colors: colors,
@@ -2628,7 +2628,7 @@ extension FlexThemeData on ThemeData {
     /// [ThemeExtension] subclasses to [ThemeData.new] or [copyWith].
     ///
     /// To obtain an extension, use ThemeData.of(context).extension.
-    final Iterable<ThemeExtension<dynamic>>? extensions,
+    final Iterable<ThemeExtension>? extensions,
   }) =>
       FlexColorScheme.dark(
         colorScheme: colorScheme,

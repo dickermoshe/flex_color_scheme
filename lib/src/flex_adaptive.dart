@@ -1,4 +1,8 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
+
+import 'mappers.dart';
+part 'flex_adaptive.mapper.dart';
 
 // ignore_for_file: comment_references
 
@@ -109,8 +113,13 @@ import 'package:flutter/foundation.dart';
 /// However, on Android you may prefer them to still use their M3 design.
 /// The adaptive theming features in [FlexColorScheme] are intended
 /// to help you do both with one theme, to achieve such a design goals.
+@MappableClass(
+    includeCustomMappers: mappers,
+    generateMethods: GenerateMethods.decode |
+        GenerateMethods.encode |
+        GenerateMethods.equals)
 @immutable
-class FlexAdaptive with Diagnosticable {
+class FlexAdaptive with Diagnosticable, FlexAdaptiveMappable {
   /// Default constructor for making a platform adaptive feature apply only
   /// on selected platforms.
   ///

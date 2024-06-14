@@ -1,3 +1,4 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,8 @@ import 'flex_color_scheme.dart';
 import 'flex_constants.dart';
 import 'flex_splash_type.dart';
 import 'flex_sub_themes.dart';
-
+import 'mappers.dart';
+part 'flex_sub_themes_data.mapper.dart';
 // ignore_for_file: comment_references
 
 /// Parameters used by [FlexColorScheme] to configure its used [FlexSubThemes].
@@ -158,8 +160,13 @@ import 'flex_sub_themes.dart';
 /// [FlexColorScheme.subThemesData] by passing properties defined in it to
 /// the above helpers that are then used to define the component sub-themes for
 /// the produced [ThemeData].
+@MappableClass(
+    includeCustomMappers: mappers,
+    generateMethods: GenerateMethods.decode |
+        GenerateMethods.encode |
+        GenerateMethods.equals)
 @immutable
-class FlexSubThemesData with Diagnosticable {
+class FlexSubThemesData with Diagnosticable, FlexSubThemesDataMappable {
   /// Default constructor, used to make an immutable FlexSubThemesData object.
   const FlexSubThemesData({
     this.interactionEffects = true,

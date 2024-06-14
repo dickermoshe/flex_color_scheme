@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ import 'flex_sub_themes.dart';
 import 'flex_sub_themes_data.dart';
 import 'flex_surface_mode.dart';
 import 'flex_text_theme_color.dart';
+import 'mappers.dart';
+
+part 'flex_color_scheme.mapper.dart';
 
 // ignore_for_file: comment_references
 
@@ -250,8 +254,14 @@ enum FlexTabBarStyle {
 /// You can also quickly adjust things like the scrim on the app bar in Android
 /// with [transparentStatusBar] and a quick tooltip style adjustment with
 /// [tooltipsMatchBackground].
+@MappableClass(
+    includeCustomMappers: mappers,
+    generateMethods: GenerateMethods.decode |
+        GenerateMethods.encode |
+        GenerateMethods.equals)
 @immutable
-class FlexColorScheme with Diagnosticable {
+@MappableClass()
+class FlexColorScheme with Diagnosticable, FlexColorSchemeMappable {
   /// Default constructor with no required properties.
   ///
   /// Creates a a light theme by default using the M2 colors as its default
@@ -1118,7 +1128,7 @@ class FlexColorScheme with Diagnosticable {
   /// [ThemeExtension] subclasses to [ThemeData.new] or [copyWith].
   ///
   /// To obtain an extension, use ThemeData.of(context).extension.
-  final Iterable<ThemeExtension<dynamic>>? extensions;
+  final Iterable<ThemeExtension>? extensions;
 
   //****************************************************************************
   //
@@ -2522,7 +2532,7 @@ class FlexColorScheme with Diagnosticable {
     /// [ThemeExtension] subclasses to [ThemeData.new] or [copyWith].
     ///
     /// To obtain an extension, use ThemeData.of(context).extension.
-    final Iterable<ThemeExtension<dynamic>>? extensions,
+    final Iterable<ThemeExtension>? extensions,
   }) {
     // LIGHT: Check valid inputs
     assert(usedColors >= 1 && usedColors <= 7, 'usedColors must be 1 to 7');
@@ -4387,7 +4397,7 @@ class FlexColorScheme with Diagnosticable {
     /// [ThemeExtension] subclasses to [ThemeData.new] or [copyWith].
     ///
     /// To obtain an extension, use ThemeData.of(context).extension.
-    final Iterable<ThemeExtension<dynamic>>? extensions,
+    final Iterable<ThemeExtension>? extensions,
   }) {
     // DARK: Check valid inputs
     assert(usedColors >= 1 && usedColors <= 7, 'usedColors must be 1 to 7.');
@@ -7683,103 +7693,6 @@ class FlexColorScheme with Diagnosticable {
     }
   }
 
-  /// Copy the object with one or more provided properties changed.
-  FlexColorScheme copyWith({
-    ColorScheme? colorScheme,
-    Brightness? brightness,
-    Color? primary,
-    Color? primaryContainer,
-    Color? secondary,
-    Color? secondaryContainer,
-    Color? tertiary,
-    Color? tertiaryContainer,
-    Color? error,
-    Color? surface,
-    Color? background,
-    Color? scaffoldBackground,
-    Color? dialogBackground,
-    Color? appBarBackground,
-    Color? onPrimary,
-    Color? onPrimaryContainer,
-    Color? onSecondary,
-    Color? onSecondaryContainer,
-    Color? onTertiary,
-    Color? onTertiaryContainer,
-    Color? onSurface,
-    Color? onBackground,
-    Color? onError,
-    Color? surfaceTint,
-    FlexTabBarStyle? tabBarStyle,
-    double? appBarElevation,
-    double? bottomAppBarElevation,
-    bool? tooltipsMatchBackground,
-    bool? transparentStatusBar,
-    VisualDensity? visualDensity,
-    TextTheme? textTheme,
-    TextTheme? primaryTextTheme,
-    String? fontFamily,
-    List<String>? fontFamilyFallback,
-    String? package,
-    MaterialTapTargetSize? materialTapTargetSize,
-    PageTransitionsTheme? pageTransitionsTheme,
-    TargetPlatform? platform,
-    Typography? typography,
-    bool? applyElevationOverlayColor,
-    FlexSubThemesData? subThemesData,
-    bool? useMaterial3,
-    Iterable<ThemeExtension<dynamic>>? extensions,
-  }) {
-    return FlexColorScheme(
-      colorScheme: colorScheme ?? this.colorScheme,
-      brightness: brightness ?? this.brightness,
-      primary: primary ?? this.primary,
-      primaryContainer: primaryContainer ?? this.primaryContainer,
-      secondary: secondary ?? this.secondary,
-      secondaryContainer: secondaryContainer ?? this.secondaryContainer,
-      tertiary: tertiary ?? this.tertiary,
-      tertiaryContainer: tertiaryContainer ?? this.tertiaryContainer,
-      error: error ?? this.error,
-      surface: surface ?? this.surface,
-      background: background ?? this.background,
-      scaffoldBackground: scaffoldBackground ?? this.scaffoldBackground,
-      appBarBackground: appBarBackground ?? this.appBarBackground,
-      dialogBackground: dialogBackground ?? this.dialogBackground,
-      onPrimary: onPrimary ?? this.onPrimary,
-      onPrimaryContainer: onPrimaryContainer ?? this.onPrimaryContainer,
-      onSecondary: onSecondary ?? this.onSecondary,
-      onSecondaryContainer: onSecondaryContainer ?? this.onSecondaryContainer,
-      onTertiary: onTertiary ?? this.onTertiary,
-      onTertiaryContainer: onTertiaryContainer ?? this.onTertiaryContainer,
-      onSurface: onSurface ?? this.onSurface,
-      onBackground: onBackground ?? this.onBackground,
-      onError: onError ?? this.onError,
-      surfaceTint: surfaceTint ?? this.surfaceTint,
-      tabBarStyle: tabBarStyle ?? this.tabBarStyle,
-      appBarElevation: appBarElevation ?? this.appBarElevation,
-      bottomAppBarElevation:
-          bottomAppBarElevation ?? this.bottomAppBarElevation,
-      tooltipsMatchBackground:
-          tooltipsMatchBackground ?? this.tooltipsMatchBackground,
-      transparentStatusBar: transparentStatusBar ?? this.transparentStatusBar,
-      visualDensity: visualDensity ?? this.visualDensity,
-      textTheme: textTheme ?? this.textTheme,
-      primaryTextTheme: primaryTextTheme ?? this.primaryTextTheme,
-      fontFamily: fontFamily ?? this.fontFamily,
-      fontFamilyFallback: fontFamilyFallback ?? this.fontFamilyFallback,
-      package: package ?? this.package,
-      materialTapTargetSize:
-          materialTapTargetSize ?? this.materialTapTargetSize,
-      pageTransitionsTheme: pageTransitionsTheme ?? this.pageTransitionsTheme,
-      platform: platform ?? this.platform,
-      typography: typography ?? this.typography,
-      applyElevationOverlayColor:
-          applyElevationOverlayColor ?? this.applyElevationOverlayColor,
-      subThemesData: subThemesData ?? this.subThemesData,
-      useMaterial3: useMaterial3 ?? this.useMaterial3,
-      extensions: extensions ?? this.extensions,
-    );
-  }
-
   /// Override the equality operator.
   @override
   bool operator ==(Object other) {
@@ -7937,7 +7850,6 @@ class FlexColorScheme with Diagnosticable {
     properties.add(
         DiagnosticsProperty<FlexSubThemesData>('subThemesData', subThemesData));
     properties.add(DiagnosticsProperty<bool>('useMaterial3', useMaterial3));
-    properties.add(
-        IterableProperty<ThemeExtension<dynamic>>('extensions', extensions));
+    properties.add(IterableProperty<ThemeExtension>('extensions', extensions));
   }
 }
